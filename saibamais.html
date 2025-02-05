@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site de Hackeamento Simulado</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: black;
+      color: lime;
+      text-align: center;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #alert {
+      display: none;
+      background-color: red;
+      padding: 20px;
+      margin: 10px;
+      border: 2px solid black;
+      max-width: 90%;
+      width: 500px;
+      border-radius: 10px;
+    }
+    #end-message {
+      display: none;
+      max-width: 90%;
+      width: 500px;
+      margin-top: 20px;
+      background-color: black;
+      color: lime;
+      border: 2px solid lime;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .progress-bar {
+      width: 100%;
+      background-color: black;
+      border: 2px solid lime;
+      height: 30px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+    .progress {
+      height: 100%;
+      background-color: lime;
+      width: 0;
+      border-radius: 10px;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.1em;
+    }
+    .button-container {
+      margin-top: 20px;
+    }
+    .button-container button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 15px 32px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .button-container button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="alert">
+    <h2>ALERTA DE SEGURANÇA!</h2>
+    <p><strong>Carregando dados por favor aguade</strong></p>
+    <p>Estamos processando...</p>
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    <p>Carregando...</p>
+  </div>
+
+  <div id="end-message">
+    <h2>Permissão de Acesso Solicitada!</h2>
+    <p><strong>Você permite que este site:</strong></p>
+    <p><strong>Colete todos os dados do seu dispositivo e depois o formate sem aviso prévio?</strong></p>
+
+    <div class="button-container">
+      <button onclick="answer('sim')">Sim</button>
+      <button onclick="answer('nao')">Não</button>
+    </div>
+  </div>
+
+  <script>
+    // Função para simular o hackeamento
+    function simulateHack() {
+      // Mostrar o alerta
+      document.getElementById('alert').style.display = 'block';
+      
+      // Simular o progresso da barra
+      let progress = 0;
+      let progressBar = document.getElementById('progress');
+      
+      let interval = setInterval(() => {
+        progress += 5;
+        progressBar.style.width = progress + '%';
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            document.getElementById('alert').style.display = 'none';
+            document.getElementById('end-message').style.display = 'block';
+          }, 1000);
+        }
+      }, 100);
+    }
+
+    // Função para lidar com a resposta
+    function answer(choice) {
+      let message = '';
+      if (choice === 'sim') {
+        message = "hahahaha infelismente esse site nao funciona";
+      } else if (choice === 'nao') {
+        message = "nao faz diferença o site nao funcina";
+      }
+      alert(message);
+    }
+
+    // Iniciar a simulação ao carregar a página
+    window.onload = simulateHack;
+  </script>
+
+</body>
+</html>
